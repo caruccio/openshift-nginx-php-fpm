@@ -23,7 +23,9 @@ set -x
 }
 
 function _start_php() {
-    _php-fpm -D -y $OPENSHIFT_PHP_DIR/configuration/etc/php-fpm.conf >> $OPENSHIFT_PHP_LOG_DIR/php_error.log 2>&1
+    if ~_php-fpm -D -y $OPENSHIFT_PHP_DIR/configuration/etc/php-fpm.conf >> $OPENSHIFT_PHP_LOG_DIR/php_error.log 2>&1; then
+        cat $OPENSHIFT_PHP_LOG_DIR/php_error.log >&2
+    fi
 }
 
 function _start_nginx() {
