@@ -5,6 +5,7 @@ if [ "${NGINX_PHP_FPM_DEBUG}" == "1" ]; then
 fi
 
 function php_context {
+  set -x
   case $OPENSHIFT_PHP_VERSION in
     5.3) eval $1 ;;
     5.4) /usr/bin/scl enable php54 "$1" ;;
