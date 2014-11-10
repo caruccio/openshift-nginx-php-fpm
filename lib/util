@@ -1,6 +1,10 @@
 #!/bin/bash
 # Utility functions for use in the cartridge scripts.
 
+if [ "${NGINX_PHP_FPM_DEBUG}" == "1" ]; then
+    set -x
+fi
+
 function _run_template()
 {
 	for conf in $@; do
